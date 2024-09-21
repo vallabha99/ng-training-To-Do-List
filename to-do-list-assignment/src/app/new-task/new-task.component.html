@@ -1,0 +1,55 @@
+<h2 mat-dialog-title style="align-items: flex-end;">New Task</h2>
+<div mat-dialog-content >
+    <form [formGroup]="taskForm" class="task-form">
+        <table class="full-width" cellspacing="0">
+            <tr>
+                <td>
+                    <mat-label>Assigned To</mat-label>
+                    <mat-form-field class="full-width">
+                        <input formControlName="assignedTo" matInput>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-label>Status</mat-label>
+                    <mat-form-field>
+                        <mat-select formControlName="status" name="status">
+                          <mat-option *ngFor="let Stat of Status" [value]="Stat.value">
+                            {{Stat.viewValue}}
+                          </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-label>Choose a date</mat-label>
+                    <mat-form-field>
+                        <input formControlName="date" matInput [matDatepicker]="picker">
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
+                </td>
+                <td>
+                    <mat-label>Priority</mat-label>
+                    <mat-form-field>
+                        <mat-select formControlName="priority"  name="priority">
+                          <mat-option *ngFor="let Stat of Priority" [value]="Stat.value">
+                            {{Stat.viewValue}}
+                          </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </td>
+            </tr>
+        </table>
+        <div class="description-box">
+            <mat-label>Description</mat-label>
+            <mat-form-field class="full-width">
+                <input formControlName="description" matInput>
+            </mat-form-field>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions [align]="'end'">
+    <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
+    <button mat-raised-button color="primary" (click)="addTask()" >Save</button>
+</div>

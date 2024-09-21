@@ -1,0 +1,69 @@
+<mat-toolbar>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>format_list_bulleted</mat-icon>
+  </button>
+  <span>Tasks</span>
+  <span class="example-spacer"></span>
+  <button mat-raised-button (click)="openDialog()">New Task</button>
+  <button mat-raised-button (click)="getAllTasks()">Refresh</button>
+  <div>
+    <mat-form-field appearance="fill" >
+      <input placeholder="Search" matInput (keyup)="applyFilter($event)" #input >
+    </mat-form-field>
+  </div>
+</mat-toolbar>
+
+<div class="container">
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+  
+      <ng-container matColumnDef="assignedTo">
+        <th mat-header-cell *matHeaderCellDef>Assigned To</th>
+        <td mat-cell *matCellDef="let element"> {{element.assignedTo}} </td>
+      </ng-container>
+  
+      
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef> Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.date | date:'dd/MM/yyyy'}} </td>
+      </ng-container>
+  
+      
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef> Description </th>
+        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+      </ng-container>
+  
+   
+      <ng-container matColumnDef="priority">
+        <th mat-header-cell *matHeaderCellDef> Priority </th>
+        <td mat-cell *matCellDef="let element"> {{element.priority}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let element">
+        <button mat-icon-button (click)="editTask(element)" color="primary">
+          <mat-icon>edit</mat-icon>
+        </button>  
+        <button mat-icon-button (click)="deleteTask(element.id)" color="warn">
+          <mat-icon>delete</mat-icon>
+        </button> 
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons
+                   aria-label="Select page of task elements">
+    </mat-paginator>
+  </div>
+</div>
