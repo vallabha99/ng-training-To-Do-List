@@ -4,12 +4,14 @@
         <table class="full-width" cellspacing="0">
             <tr>
                 <td>
+                    <span class="required">*</span>
                     <mat-label>Assigned To</mat-label>
                     <mat-form-field class="full-width">
                         <input formControlName="assignedTo" matInput>
                     </mat-form-field>
                 </td>
                 <td>
+                    <span class="required">*</span>
                     <mat-label>Status</mat-label>
                     <mat-form-field>
                         <mat-select formControlName="status" name="status">
@@ -30,6 +32,7 @@
                       </mat-form-field>
                 </td>
                 <td>
+                    <span class="required">*</span>
                     <mat-label>Priority</mat-label>
                     <mat-form-field>
                         <mat-select formControlName="priority"  name="priority">
@@ -51,5 +54,5 @@
 </div>
 <div mat-dialog-actions [align]="'end'">
     <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
-    <button mat-raised-button color="primary" (click)="addTask()" >Save</button>
+    <button mat-raised-button [disabled]="!taskForm.valid" color="primary" (click)="addTask()" >Save</button>
 </div>

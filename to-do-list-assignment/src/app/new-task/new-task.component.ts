@@ -75,7 +75,7 @@ export class NewTaskComponent implements OnInit {
         alert("error occured while adding task");
       }
     })
-    } else{
+    } else if(this.taskForm.valid){
       console.log(this.editTask.id);
       this.apiService.putTask(this.taskForm.value, this.editTask.id).subscribe({
         next: (res) => {
