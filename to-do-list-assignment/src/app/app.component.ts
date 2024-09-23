@@ -4,6 +4,7 @@ import { NewTaskComponent } from './new-task/new-task.component';
 import { ApiService } from './services/api.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { DeleteTaskComponent } from './delete-task/delete-task.component';
 
 @Component({
   selector: 'app-root',
@@ -60,15 +61,19 @@ export class AppComponent implements OnInit{
     })
   }
 
-  deleteTask(id: string){
-    this.apiService.deleteTask(id).subscribe({
-      next: (res) => {
-        alert("task deleted");
-        this.dialog.closeAll();
-      },
-      error: () => {
-        alert("error occured while deleting the task");
-      }
+  deleteTask(element: string){
+    this.dialog.open(DeleteTaskComponent, {
+      width: '35%',
+      data: element
     })
+    // this.apiService.deleteTask(id).subscribe({
+    //   next: (res) => {
+    //     alert("task deleted");
+    //     this.dialog.closeAll();
+    //   },
+    //   error: () => {
+    //     alert("error occured while deleting the task");
+    //   }
+    // })
   }
 }

@@ -18,11 +18,13 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { HttpClientModule } from '@angular/common/http';
 import { MatPaginatorModule} from '@angular/material/paginator';
 import { MatTableModule} from '@angular/material/table';
+import { DeleteTaskComponent } from './delete-task/delete-task.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NewTaskComponent
+    NewTaskComponent,
+    DeleteTaskComponent
   ],
   imports: [
     BrowserModule,
